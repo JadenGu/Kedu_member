@@ -21,6 +21,7 @@ android {
     }
     compileSdkVersion 26
     defaultConfig {
+        applicationId "com.kedu.member"
         minSdkVersion 20
         targetSdkVersion 26
         versionCode 1
@@ -31,28 +32,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", "\"http://120.27.238.3/\""
+            buildConfigField "String", "URL", "\"http://120.27.238.3/\""
             signingConfig signingConfigs.release
+            applicationIdSuffix ".release"
         }
-        beta {
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", "\"http://kedushop.qa.zs-online.com/\""
+            buildConfigField "String", "URL", "\"http://kedushop.qa.zs-online.com/\""
             signingConfig signingConfigs.beta
-        }
-    }
-    flavorDimensions "default"
-    productFlavors {
-        member {
-            buildConfigField "String", "SUFFIX", "\"\""
-            resValue "string", "app_name", "柯渡采购会员版"
-            applicationId "com.kedu.member"
-        }
-
-        merchant {
-            buildConfigField "String", "SUFFIX", "\"business/login\""
-            resValue "string", "app_name", "柯渡采购商家版"
-            applicationId "com.kedu.merchant"
+            applicationIdSuffix ".beta"
         }
     }
 }
