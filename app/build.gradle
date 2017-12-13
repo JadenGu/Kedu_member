@@ -5,9 +5,22 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'key'
+            keyPassword '12345678'
+            storeFile file('/Users/gurui/Kedu_member/key_store')
+            storePassword '12345678'
+        }
+        beta {
+            keyAlias 'key'
+            keyPassword '12345678'
+            storeFile file('/Users/gurui/Kedu_member/key_store')
+            storePassword '12345678'
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.kedu.member.kedu_member"
         minSdkVersion 20
         targetSdkVersion 26
         versionCode 1
@@ -18,15 +31,38 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"http://120.27.238.3/\""
+            signingConfig signingConfigs.release
+        }
+        beta {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"http://kedushop.qa.zs-online.com/\""
+            signingConfig signingConfigs.beta
+        }
+    }
+    flavorDimensions "default"
+    productFlavors {
+        member {
+            buildConfigField "String", "SUFFIX", "\"\""
+            resValue "string", "app_name", "柯渡采购会员版"
+            applicationId "com.kedu.member"
+        }
+
+        merchant {
+            buildConfigField "String", "SUFFIX", "\"business/login\""
+            resValue "string", "app_name", "柯渡采购商家版"
+            applicationId "com.kedu.merchant"
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:support-v4:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
