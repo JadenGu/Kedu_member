@@ -33,7 +33,7 @@ class Main2Activity : AppCompatActivity() {
 
     inner class MyWebViewClient : WebViewClient() {
         override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-            return true
+            return false
         }
     }
 }
