@@ -21,7 +21,7 @@ android {
     }
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.kedu.merchant"
+        applicationId "com.kedu.member"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
@@ -32,14 +32,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "URL", "\"http://120.27.238.3/business/login\""
+            buildConfigField "String", "URL", "\"http://120.27.238.3/\""
             signingConfig signingConfigs.release
             applicationIdSuffix ".release"
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "URL", "\"http://kedushop.qa.zs-online.com/business/login\""
+            buildConfigField "String", "URL", "\"http://kedushop.qa.zs-online.com/\""
             signingConfig signingConfigs.beta
             applicationIdSuffix ".beta"
         }
