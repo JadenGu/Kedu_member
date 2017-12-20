@@ -29,7 +29,6 @@ class Main2Activity : AppCompatActivity(), AdvancedWebView.Listener {
     }
 
     override fun onPageStarted(url: String?, favicon: Bitmap?) {
-        progressBar.visibility = View.VISIBLE
     }
 
     private val url = BuildConfig.URL
